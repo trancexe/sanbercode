@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
+use App\Question;
 use Illuminate\Http\Request;
 
 class JawabanController extends Controller
@@ -12,9 +13,12 @@ class JawabanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $question = Question::find($id);
+        $answer = $question->answer;
+        // dd($question, $answer);
+        return view('jawaban.index',compact('question', 'answer'));
     }
 
     /**
@@ -35,7 +39,13 @@ class JawabanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $jawaban = new Answer;
+        $jawaban->content = $request->get('content');
+        $jawaban->id_question = $request->get('id_question');
+        $jawaban->save();
+
+        return redirect()->route('jawaban.index', ['id' => $jawaban->id_question] )->with('status', 'Jawaban Berhasil dibuat');
+        // dd($request);
     }
 
     /**

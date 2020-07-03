@@ -46,6 +46,7 @@
               <th>id</th>
               <th>Judul</th>
               <th>Isi</th>
+              <th>Jumlah Komentar</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -54,8 +55,9 @@
             <td>{{$tanya->id}}</td>
             <td>{{$tanya->tittle}}</td>
             <td>{{$tanya->content}}</td>
+            <td>{{$tanya->answer_count}}</td>
             <td><a
-              href="{{route('pertanyaan.edit', [$tanya->id])}}"
+              href="{{ route('jawaban.index', ['id' => $tanya->id]) }}"
               class="btn btn-info btn-sm"
               > Lihat Jawaban </a></td>
             </tr>

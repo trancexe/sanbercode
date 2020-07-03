@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', "PertanyaanController@index")->name('home');
-
+Route::get('jawaban/{id}', [
+    'as' => 'jawaban.index',
+    'uses' => 'JawabanController@index'
+    ]);
 Route::resource("pertanyaan", "PertanyaanController");
+Route::resource("jawaban", "JawabanController", ['except' => 'index']);

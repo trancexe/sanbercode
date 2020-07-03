@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Question as Question;
+use App\Answer as Answer;
 class PertanyaanController extends Controller
 {
     /**
@@ -13,8 +14,7 @@ class PertanyaanController extends Controller
      */
     public function index()
     {
-        $q = Question::All();
-        // dd($q);
+        $q = Question::withCount('answer')->get();
         return view('pertanyaan.index',['pertanyaan' => $q]);
     }
 
