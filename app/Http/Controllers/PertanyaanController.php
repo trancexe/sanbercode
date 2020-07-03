@@ -90,6 +90,8 @@ class PertanyaanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $destroy = Question::destroyAll($id);
+        return redirect()->route('pertanyaan.index')->with('status', 'question successfully
+        deleted');
     }
 }

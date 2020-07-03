@@ -58,21 +58,46 @@
             <td>{{$tanya->answer_count}}</td>
             <td><a
               href="{{ route('jawaban.index', ['id' => $tanya->id]) }}"
-              class="btn btn-info btn-sm"
+              class="btn btn-sm btn-info"
               > Lihat Jawaban </a> <a
-                href="{{ route('pertanyaan.show', ['pertanyaan' => $tanya->id]) }}"
-                class="btn btn-info btn-sm"
-                > Edit Pertanyaan </a></td>
-              </tr>
-            @endforeach
-            <tbody>
-            </tbody>
-          </table>
-        </div>
-        <!-- /.card-body -->
-        {{-- <div class="card-footer">
-          Footer
-        </div> --}}
-        <!-- /.card-footer-->
+              href="{{ route('pertanyaan.show', ['pertanyaan' => $tanya->id]) }}"
+              class="btn btn-sm btn-secondary"
+              > Edit Pertanyaan </a>
+              <form
+              method="POST"
+              class="d-inline"
+              onsubmit="return confirm('Move book to trash?')"
+              action="{{route('pertanyaan.destroy', [$tanya->id])}}"
+              >@csrf
+              <input
+              type="hidden"
+              value="DELETE"
+              name="_method">
+              <input
+              type="submit"
+              value="Trash"
+              class="btn btn-danger btn-sm">
+            </form></td>
+            
+          </tr>
+          @endforeach
+          <tbody>
+          </tbody>
+        </table>
       </div>
-      @endsection
+      <!-- /.card-body -->
+      {{-- <div class="card-footer">
+        Footer
+      </div> --}}
+      <!-- /.card-footer-->
+    </div>
+    @endsection
+
+
+    @push('scripts')
+    <script>
+      $(".delete").on("submit", function(){
+        return confirm("Are you sure?");
+      });
+    </script>
+    @endpush

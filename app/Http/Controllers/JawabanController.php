@@ -64,9 +64,10 @@ class JawabanController extends Controller
      * @param  \App\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Answer $answer)
+    public function edit($id)
     {
-        //
+        $jawaban = Answer::show($id);
+        return view('jawaban.edit',['jawaban' => $jawaban]);
     }
 
     /**
@@ -76,9 +77,11 @@ class JawabanController extends Controller
      * @param  \App\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Answer $answer)
+    public function update(Request $request, $id)
     {
-        //
+        $jawaban = Answer::updatedata($request->all(),$id);
+        return redirect()->route('jawaban.index',['id'=>$jawaban['id_question']])->with('status', 'jawaban Berhasil dibuat');
+        // return $jawaban['id_question'];
     }
 
     /**
@@ -87,8 +90,10 @@ class JawabanController extends Controller
      * @param  \App\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Answer $answer)
+    public function destroy($id)
     {
-        //
+        $destroy = Answer::destroyAll($id);
+        return redirect()->route('jawaban.index',['id'=>$destroy['id_question']])->with('status', 'Answer successfully deleted');
+        // return $destroy;
     }
 }

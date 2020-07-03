@@ -25,4 +25,12 @@ class Question extends Model
         ]);
         return $Question;
     }
+
+    public static function destroyAll($id){
+        $Question = Question::where('id','=',$id)->first();
+        $Answer = Answer::where('id_question','=',$id);
+        $Answer->delete();
+        $Question->delete();
+        return $Question;
+    }
 }
