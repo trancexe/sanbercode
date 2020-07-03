@@ -59,8 +59,11 @@
             <td><a
               href="{{ route('jawaban.index', ['id' => $tanya->id]) }}"
               class="btn btn-info btn-sm"
-              > Lihat Jawaban </a></td>
-            </tr>
+              > Lihat Jawaban </a> <a
+                href="{{ route('pertanyaan.show', ['pertanyaan' => $tanya->id]) }}"
+                class="btn btn-info btn-sm"
+                > Edit Pertanyaan </a></td>
+              </tr>
             @endforeach
             <tbody>
             </tbody>

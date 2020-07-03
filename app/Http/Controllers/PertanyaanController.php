@@ -53,7 +53,8 @@ class PertanyaanController extends Controller
      */
     public function show($id)
     {
-        //
+        $pertanyaan = Question::show($id);
+        return view('pertanyaan.show',['pertanyaan' => $pertanyaan]);
     }
 
     /**
@@ -64,7 +65,8 @@ class PertanyaanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pertanyaan = Question::show($id);
+        return view('pertanyaan.edit',['pertanyaan' => $pertanyaan]);
     }
 
     /**
@@ -76,7 +78,8 @@ class PertanyaanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pertanyaan = Question::updatedata($request->all(),$id);
+        return redirect()->route('pertanyaan.index')->with('status', 'Pertanyaan Berhasil dibuat');;
     }
 
     /**

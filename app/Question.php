@@ -11,4 +11,18 @@ class Question extends Model
     public function answer(){
         return $this->hasMany("App\Answer",'id_question','id');
         }
+
+    public static function show($id){
+        $Question = Question::where('id','=',$id)->first();
+        return $Question;
+    }
+
+    public static function updatedata($request, $id){
+        $Question = Question::where('id','=',$id)
+        ->update([
+            'tittle'=> $request['tittle'],
+            'content'=> $request['content'],
+        ]);
+        return $Question;
+    }
 }

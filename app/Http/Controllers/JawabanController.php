@@ -17,7 +17,6 @@ class JawabanController extends Controller
     {
         $question = Question::find($id);
         $answer = $question->answer;
-        // dd($question, $answer);
         return view('jawaban.index',compact('question', 'answer'));
     }
 
